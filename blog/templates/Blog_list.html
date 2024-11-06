@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}
+BLOG | Home
+{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary mb-4 mt-4" href="{% url "create_Blog" %}">
+    Create Blog
+</a>
+<div class="container row gap-3">
+    {% for blog in allBlog %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{blog.photo.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.user.username}}</h5>
+          <p class="card-text">{{blog.text}}</p>
+          {% if blog.user == user %}
+            <a href="{% url "edit_Blog" blog.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url "delete_Blog" blog.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

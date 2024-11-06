@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}
+BLOG
+{% endblock %}
+
+{% block content %}
+
+{% if form.instance.pk %}
+    <h3 class="mt-2 mb-4">
+        Edit BLog
+    </h3>
+{% else %}
+    <h3 class="mt-2 mb-4">
+        Create Blog
+    </h3>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-warning">
+        Create
+    </button>
+</form>
+<a href="{% url "get_All_Blogs" %}" class="btn btn-primary mt-2"> Back </a>
+
+{% endblock %}
